@@ -38,21 +38,20 @@ Vds = 3 - 2 - 0;
 Vgs1=sqrt(2*Id/(UON*Cox*W/Leff*(1+LAMBDAn*Vds)))+VTOn;
 Vov = Vgs1 - VTOn;
 %Question 4
-gm= sqrt(2*Idm*UON*Cox*(W/L)*1000*(1+Vds*LAMBDAn));
-gma = gm/1000;
+
 
 gmeff = sqrt(2*Idm*UON*Cox*(W/Leff)*1000*(1+Vds*LAMBDAn));
-gmaeff = gm/1000;
+gmaeff = gmeff/1000;
 %Question 5
 b = 2* W1 * Leff*1e-6 * Cox/3;  %en Faradios
 bf = b*1e15; %en fentaFaradios
 %Question 6
 CGDOf = CGDO * 1e15;
-Coverlap= CGDO*1e15 *W1; % pasamos a fentafaradios y multiplicamos por metros
+Coverlap= 2*CGDO*1e15 *W1 % pasamos a fentafaradios y multiplicamos por metros
 %Question 7
 Cgs_prima = (2*W1*Leff*1e-6*Cox/3);
 Cgs_primaf= Cgs_prima *1e15;
-Cgs = Cgs_primaf + W1*CGDOf;
+Cgs = Cgs_primaf + W1*CGDOf*2 %lleva Cgdof*2 porque es Coverlap
 Cgsa = Cgs * 1e-15;
 %Question 8
 Cgd = W1*CGDOf
@@ -66,6 +65,7 @@ wz= wzero/(2*pi*1e9)
 
 %Question 11
 wineff = 1 /(Rs*(Cgsa + (1+gmaeff*Rd)*Cgda));
+
  winaeff = wineff/ (2*pi*1e9)
 %Question 12
  wout = 1 / (Rd* (CdbFaradios + Cgda));
@@ -74,17 +74,17 @@ wineff = 1 /(Rs*(Cgsa + (1+gmaeff*Rd)*Cgda));
 Leff = L - 2*LD;
 Leffm= Leff * 1e-6
 %Question 14
-
-Vgs2eff= VTOn + sqrt((2*Id)/(UON*1000*Cox*(W/Leff)))
+Vgs2= sqrt(2*Id/(UON*Cox*W/Leff))+VTOn;
+Vov = Vgs2 - VTOn
 %Question 15
 gm2eff = sqrt(2*UON*Cox*1000*(W1/Leffm)*Idm)
 %Question 16
 CGDOf2 = CGDO * 1e15;
-Coverlap2= CGDO*1e15 *W1; % pasamos a fentafaradios y multiplicamos por metros
+Coverlap2= (CGDOf2*2)*1e15 *W1 % pasamos a fentafaradios y multiplicamos por metros
 %Question 17
 Cgs_prima2 = (2*W1*Leff*1e-6*Cox/3);
 Cgs_primaf2 = Cgs_prima *1e15;
-Cgs2 = Cgs_primaf + W1*CGDOf;
+Cgs2 = Cgs_primaf + W1*CGDOf*2
 Cgsa2 = Cgs * 1e-15;
 %Question 18 
 gm2aeff= gm2eff/1000;
